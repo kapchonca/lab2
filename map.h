@@ -14,6 +14,8 @@ class Map {
 protected:
     int mapHeight = 0;
     std::vector<std::string> mapLayout; 
+    std::vector<std::string> mapFogLayout; 
+    std::vector<Point> chestCoords;
     
 
 public:
@@ -21,6 +23,7 @@ public:
     void displayMap();
     int movePlayer();
     std::vector<std::string> getMapLayout();
+    std::vector<std::string> getMapFogLayout();
 
     // std::vector<int> getNewGeneration();
     
@@ -29,6 +32,10 @@ public:
     int getMapHeight();
 
     void setCellSeen(int coordY, int coordX);
+
+    void removeChest(int chestInd);
+
+    void fieldOfView(int y, int x);
 
 };
 

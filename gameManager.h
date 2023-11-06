@@ -6,6 +6,9 @@
 #include "map.h"
 #include "progen.h"
 #include "stateBattle.h"
+#include "chest.h"
+#include "potions.h"
+#include "inventory.h"
 #include <string>
 
 
@@ -27,6 +30,9 @@ public:
     bool gameIsOver();
 
     void setGameOver();
+
+    void stateInventory(Inventory& inventory, Player& player);
+
 };
 
 #endif //GAMEMANAGER

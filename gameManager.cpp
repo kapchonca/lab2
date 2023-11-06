@@ -9,43 +9,6 @@
 #include <chrono>
 #include "gameManager.h"
 
-// void GameManager::loadInterface(Player& player, Monster& monster) {
-
-//     int maxY, maxX;
-//     getmaxyx(stdscr, maxY, maxX); // получаем измерения окна
-
-//     for (int x = 0; x < maxX; x++) {
-//         mvaddch(0, x, ACS_HLINE); // горизонтальная линия сверху
-//     }
-
-//     for (int x = 0; x < maxX; x++) {
-//         mvaddch(maxY - 1, x, ACS_HLINE); // горизонтальная линия снизу
-//     }
-
-//     for (int y = 1; y < maxY - 1; y++) {
-//         mvaddch(y, 0, ACS_VLINE); // вертикальные линии по бокам
-//         mvaddch(y, maxX - 1, ACS_VLINE); 
-//     }
-
-//     for (int x = 1; x < maxX - 1; x++) {
-//         mvaddch(maxY - 15, x, ACS_HLINE); // линия, отделяющая блок с текстом
-//     }
-//     for (int x = 1; x < maxX - 1; x++) {
-//         mvaddch(11, x, ACS_HLINE); // линия, отделяющая блок со статусами
-//     }
-
-//     // int centerY = maxY / 2;
-//     // int centerX = maxX / 2;
-
-//     mvprintw(2, 118, "%s", monster.getName().c_str()); // выводим все статусы
-//     mvprintw(3, 111, "HP: %d/%d ATK: %d", monster.getHealthPoints(), monster.getHealthMax(), monster.getAttackPoints());
-//     mvprintw(6, 119, "YOU");
-//     mvprintw(7, 111, "HP: %d/%d ATK: %d", player.getHealthPoints(), player.getHealthMax(), player.getAttackPoints());
-//     mvprintw(8, 112, "REMAINING TIME: ");
-//     refresh(); 
-
-// }
-
 bool GameManager::gameIsOver() {
     if (s_GameIsOver) {
         return true;
@@ -54,67 +17,33 @@ bool GameManager::gameIsOver() {
     }
 }
 
-// void GameManager::printSprite(Monster monster) {
-
-//     std::string address = "sprites/" + monster.getSpriteInd(); // путь к файлу
-//     std::ifstream file(address);
-//     std::string artLength; 
-//     getline(file, artLength); // достаем из начала файла длину спрайта в строчках
-//     int artLengthNum = std::stoi(artLength);
-
-//     std::string sprite[artLengthNum]; // массив для хранения самого спрайта монстра
-
-//     for (int i = artLengthNum; i > 0; i--) {
-//         getline(file, sprite[artLengthNum - i]); // считываем файл в массив построчно
-//     }
-
-//     for (int i = 0; i < 26; i++) {
-//         mvprintw(15 + i, 90, "%s", sprite[i].c_str()); // вывод спрайта на экран
-//     }
-
-// }
-
 void GameManager::setGameOver() {
     s_GameIsOver = true;
 }
 
-// std::string GameManager::getRandomLine() { // достает случайную строчку для печати из базы
-//     std::ifstream dataset("./dataset");
+void GameManager::stateInventory(Inventory& inventory, Player& player) {
+    int ch;
+    while (true) {
+        inventory.showInventory();
+        ch = getch();
 
-//     if (!dataset.is_open()) {
-//         throw std::invalid_argument( "Couldn't open the file" );
-//     }
+        if (ch == 'f') {
+            break;
+        }
 
-//     std::string totalPresets;
-//     getline(dataset, totalPresets); // в первой строке файла за 6писано кол-во строчек для выбора 
-//     int totalPresetsNum = std::stoi(totalPresets); // конвертация в инт
-//     std::string returnLine;
+        BasePotionOfHealing potion;
+        if (ch == '1' and inventory.getLoot()["SmallHeal"] != 0) {
+            PotionOfHealSmall potion;
+            inventory.reduceItemCount("SmallHeal");
+        } else if (ch == '2' and inventory.getLoot()["MediumHeal"] != 0) {
+            PotionOfHealMedium potion;
+            inventory.reduceItemCount("MediumHeal");
+        }
+        potion.drinkPotion(player);
+    }
 
-//     srand(time(0)); // обновляем сид функции рандома при помощи текущего времени
-//     int lineNum = rand() % totalPresetsNum + 1; // т.к. ранд возвращает большие значения, берем остаток от деления
+}
 
-//     for (int i = lineNum; i>0; i--) {
-//         getline(dataset, returnLine); // перебираем строки, пока не дойдем до выпавшей рандомом
-//     }
-    
-//     return returnLine; 
-// }   
-
-// void GameManager::StateIdle(Player& player, Monster& monster) {
-//     Map map(1);
-//     int interaction =  map.movePlayer();
-//     while (true) {
-//         switch (interaction) {
-//             case 1:
-//                 if(StateBattle(player, monster)) {
-//                     map.removeEntity(monster);
-//                     clear();
-//                     map.displayMap(); //
-//                     getch(); //
-//                 };
-//         }
-//     }
-// }
 
 void GameManager::StateHandler() {
 
@@ -126,16 +55,34 @@ void GameManager::StateHandler() {
     curs_set(0); // Hide the cursor
 
     Player player;
+    Inventory inventory;
     Map map(238, 59, 10);
     while (!gameIsOver()) {
         int interactionNum = map.movePlayer();
-        switch (interactionNum) {
-            case 0:
+        if (interactionNum == 0) {
                 setGameOver();
-                break;
-            case 1:
-            Monster monster(player);
-            StateBattle battle;
+        } else if (interactionNum == 2) {
+                clear();
+                Chest chest;    
+                // printw("CHEST!!!!!!!!!");
+                if (chest.returnLoot()[0] == 1) {
+                    // PotionOfHealMedium potion;
+                    inventory.addItem("SmallHeal");
+                    // std::cout << typeid(potion).name() << '\n';
+                    // printw("medium");
+
+                } else {
+                    // PotionOfHealSmall potion;
+                    inventory.addItem("MediumHeal");
+                    // std::cout << typeid(potion).name() << '\n';
+                    // printw("small");
+                }
+                // getch();
+                chest.displayChest();
+                getch();
+        } else if (interactionNum == 1) {
+                Monster monster(player);
+                StateBattle battle;
                 if(battle.readySetFight(player, monster)) {
                     // map.removeEntity(monster);
                     clear();
@@ -144,7 +91,9 @@ void GameManager::StateHandler() {
                 } else {
                     setGameOver();
                 };
-                break;
+        } else if (interactionNum == 3) {
+            stateInventory(inventory, player);
+
         }
     }
 

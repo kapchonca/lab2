@@ -1,21 +1,11 @@
 #include "player.h"
 
-
-// void Player::levelUp(int xp, int xpLimit) {
-//     xpLimit *= 1.1;
-//     xp = 0;
-// }
-
-// void Player::addConsumable(std::string consumable) {
-//     consumables.push_back(consumable);
-// }
-
-// void Player::addEquipment(std::string equip) {
-//     equipment.push_back(equip);
-// }
-
 void Player::decreaseHealth(int attackPoints) {
     healthPoints -= attackPoints;
+}
+
+void Player::increaseHealth(int healPoints) {
+    healthPoints += healPoints;
 }
 
 int Player::getHealthPoints() {

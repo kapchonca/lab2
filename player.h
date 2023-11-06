@@ -14,6 +14,7 @@ protected:
     int xp = 0;
     int xpLimit = 100;
 
+    // std::vector<int>* pInventory;
     // std::vector<std::string> consumables;
     // std::vector<std::string> equipment;
 
@@ -25,6 +26,8 @@ public:
     // void addEquipment(std::string equip);
 
     void decreaseHealth(int attackPoints);
+
+    void increaseHealth(int healPoints);
 
     int getHealthPoints();
 
