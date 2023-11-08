@@ -50,6 +50,14 @@ void StateBattle::loadInterface(Player& player, Monster& monster) {
 
 }
 
+
+// template <typename Stat>
+// Stat getValue(std::string value) {
+//     switch (value) {
+//         case "heal"
+//     }
+// }
+// template <typename Enemy>
 void StateBattle::printSprite(Monster& monster) {
 
     std::string address = "sprites/" + monster.getSpriteInd(); // путь к файлу
@@ -70,8 +78,21 @@ void StateBattle::printSprite(Monster& monster) {
 
 }
 
+std::string StateBattle::randomizeLine(std::string line) {
+    for (int i = 0; i < line.size(); i++) {
+        srand((std::chrono::duration_cast< std::chrono::nanoseconds >(std::chrono::system_clock::now().time_since_epoch()).count()));
+        if (rand() % 3 == 0) {
+            if (line[i] > 96 && line[i] < 123) {
+                line[i] -= 32;
+            } else if (line[i] > 64 && line[i] < 91) {
+                line[i] += 32;
+            }
+        }
+    }
+    return line;
+}
 
-std::string StateBattle::getRandomLine() { // достает случайную строчку для печати из базы
+std::string StateBattle::getRandomLine(Monster& monster) { // достает случайную строчку для печати из базы
     std::ifstream dataset("./dataset");
 
     if (!dataset.is_open()) {
@@ -79,14 +100,14 @@ std::string StateBattle::getRandomLine() { // достает случайную 
     }
 
     std::string totalPresets;
-    getline(dataset, totalPresets); // в первой строке файла за 6писано кол-во строчек для выбора 
-    int totalPresetsNum = std::stoi(totalPresets); // конвертация в инт
+    // getline(dataset, totalPresets); // в первой строке файла за 6писано кол-во строчек для выбора 
+    // int totalPresetsNum = std::stoi(totalPresets); // конвертация в инт
     std::string returnLine;
 
     srand(time(0)); // обновляем сид функции рандома при помощи текущего времени
-    int lineNum = rand() % totalPresetsNum + 1; // т.к. ранд возвращает большие значения, берем остаток от деления
+    int lineNum = rand() % 50 + 1; // т.к. ранд возвращает большие значения, берем остаток от деления
 
-    for (int i = lineNum; i>0; i--) {
+    for (int i = lineNum + monster.getDatasetOffset(); i>0; i--) {
         getline(dataset, returnLine); // перебираем строки, пока не дойдем до выпавшей рандомом
     }
     
@@ -115,6 +136,8 @@ bool StateBattle::readySetFight(Player& player, Monster& monster) {
     int timePassed = 0;
     std::string text;
 
+
+
     mvprintw(48, 115, "YOUR LINE:");
     refresh();
 
@@ -122,7 +145,7 @@ bool StateBattle::readySetFight(Player& player, Monster& monster) {
     while ((player.getHealthPoints() > 0) && (monster.getTime() - timePassed > 0) && (monster.getHealthPoints() > 0)) {
 
         if (textIndex == textLength) {
-            text = getRandomLine();
+            text = getRandomLine(monster);
             textLength = std::strlen(text.c_str());
             textIndex = 0;
         }
@@ -154,6 +177,11 @@ bool StateBattle::readySetFight(Player& player, Monster& monster) {
             }
         }
         clear();
+
+
+        if (monster.getRandomizeActive() && (timePassed % 5) == 0) {
+            text = randomizeLine(text);
+        }
 
         int maxY, maxX;
         getmaxyx(stdscr, maxY, maxX);
@@ -202,4 +230,16 @@ bool StateBattle::readySetFight(Player& player, Monster& monster) {
 }
 
 
+// int Text::getTextLength() {
+//     return textIndex;
+// };
+// int Text::getTextIndex() {
+//     return textIndex;
+// };
+// std::string Text::getText() {
+//     return text;
+// };
+// std::string Text::getLetters() {
+//     return letters;
+// };
 

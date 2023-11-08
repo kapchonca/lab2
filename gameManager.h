@@ -16,6 +16,7 @@ class GameManager {
 
 protected:
 
+    int loopCounter = 0;
     bool s_GameIsOver = false;
 
 public:
@@ -31,7 +32,13 @@ public:
 
     void setGameOver();
 
-    void stateInventory(Inventory& inventory, Player& player);
+    void increaseLoopCount();
+
+    void stateInventory(Player& player);
+
+    void recieveLoot(Player& player, Monster& monster);
+
+    Monster getRandomMonster(Player& player);
 
 };
 

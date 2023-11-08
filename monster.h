@@ -7,16 +7,16 @@
 
 class Monster {
 
-private:
+protected:
     int monsterTime;
     int healthMax;
     int healthPoints;
     int attackPoints;
-    std::string name = "DRAGON";
-    std::string spriteInd = "1";
-    // int positionX = 2;
-    // int positionY = 1;
+    std::string name;
+    std::string spriteInd;
     float baseModifier;
+    bool randomizeLineActive = false;
+    int datasetOffset;
 
 public:
 
@@ -28,12 +28,40 @@ public:
     int getAttackPoints();
     int getPositionX();
     int getPositionY();
+    int getDatasetOffset();
+    bool getRandomizeActive();
     std::string getName();
     std::string getSpriteInd();
 
     void decreaseHealth(int attack);
 
     void setHealthPoints(int healthPoints);
+};
+
+class Boss : public Monster {
+
+public:
+    Boss(Player& player, int loopNumber);
+};
+
+class Dragon : public Monster {
+
+public:
+    Dragon(Player& player);
+
+};
+
+class Skeleton : public Monster {
+
+public:
+    Skeleton(Player& player);
+
+};
+
+class Vampire : public Monster {
+
+public:
+    Vampire(Player& player);
 };
 
 #endif // MONSTER

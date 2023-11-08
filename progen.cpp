@@ -47,15 +47,14 @@ void ProceduralGeneration::generateMap(int roomsCount) {
     for (const Room &room : m_rooms) {
     // srand(time(0)); // Update the random seed using the current time
         roomCounter++;
-        int playerH, playerW;
+        int specialH, specialW;
         int monsterH, monsterW;
         char sym;
-        switch (roomCounter) {
-            case 1:
-                playerH = (rand() % (room.h));
-                playerW = (rand() % (room.w));
-                break;
-        }
+        char symFog;
+
+        specialH = (rand() % (room.h));
+        specialW = (rand() % (room.w));
+
         srand(time(0));
         int chestX, chestY;
         chestY = rand() % room.h + room.y;
@@ -65,21 +64,27 @@ void ProceduralGeneration::generateMap(int roomsCount) {
         for (int x = 0; x < room.w; ++x) {
             for (int y = 0; y < room.h; ++y) {
                 sym = ' ';
-                if (roomCounter == 1 && (y == playerH) && (x == playerW)) {
+                symFog = '-';
+                if (roomCounter == 1 && (y == specialH) && (x == specialW)) {
                     sym = '@';
+                } else if (roomCounter == 2 && (y == specialH) && (x == specialW)) {
+                    symFog = 'B';
+                    sym = 'B';
                 }
                 m_data[(room.y + y)][(room.x + x)] = sym;
-                m_dataFog[(room.y + y)][(room.x + x)] = '-';
+                m_dataFog[(room.y + y)][(room.x + x)] = symFog;
             }
         }
         m_data[chestY][chestX] = '/';
-        std::cout << 'a';
-        for (int k = (room.w * room.h / 5); k > 0; k--) {
+        // std::cout << 'a';
+        for (int k = (room.w * room.h / 7); k > 0; k--) {
             srand((std::chrono::duration_cast< std::chrono::nanoseconds >(std::chrono::system_clock::now().time_since_epoch()).count()));
             monsterH = (rand() % (room.h));
             monsterW = (rand() % (room.w));
             // std::cout << monsterH<< ' '<< monsterW;
-            m_data[(room.y + monsterH)][(room.x + monsterW)] = 'E';
+            if (m_data[(room.y + monsterH)][(room.x + monsterW)] == ' '){
+                m_data[(room.y + monsterH)][(room.x + monsterW)] = 'E';
+            }
         }
 
 

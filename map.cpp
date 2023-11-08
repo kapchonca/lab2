@@ -120,6 +120,9 @@ int Map::movePlayer() {
             if (mapLayout[y][x] == 'E') {
                 mapLayout[y][x] = '@';
                 return 1;
+            } else if (mapLayout[y][x] == 'B') {
+                mapLayout[y][x] = '@';
+                return 4;
             }
 
             for (int chest = 0; chest < chestCoords.size(); chest++) {
