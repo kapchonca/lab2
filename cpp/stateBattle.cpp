@@ -1,7 +1,7 @@
 
 #include "../h/stateBattle.h"
 
-void StateBattle::loadInterface(Player* player, Monster& monster) {
+void StateBattle::loadInterface(Player* player, Monster* monster) {
 
     int maxY, maxX;
     getmaxyx(stdscr, maxY, maxX); // получаем измерения окна
@@ -26,8 +26,8 @@ void StateBattle::loadInterface(Player* player, Monster& monster) {
         mvaddch(11, x, ACS_HLINE); // линия, отделяющая блок со статусами
     }
 
-    mvprintw(2, 118, "%s", monster.getName().c_str()); // выводим все статусы
-    mvprintw(3, 111, "HP: %d/%d ATK: %d", monster.getHealthPoints(), monster.getHealthMax(), monster.getAttackPoints());
+    mvprintw(2, 118, "%s", monster->getName().c_str()); // выводим все статусы
+    mvprintw(3, 111, "HP: %d/%d ATK: %d", monster->getHealthPoints(), monster->getHealthMax(), monster->getAttackPoints());
     mvprintw(6, 119, "YOU");
     mvprintw(7, 111, "HP: %d/%d ATK: %d", player->getHealthPoints(), player->getHealthMax(), player->getAttackPoints());
     mvprintw(8, 112, "REMAINING TIME: ");
@@ -36,9 +36,9 @@ void StateBattle::loadInterface(Player* player, Monster& monster) {
 }
 
 
-void StateBattle::printSprite(Monster& monster) {
+void StateBattle::printSprite(Monster* monster) {
 
-    std::string address = "../sprites/" + monster.getSpriteInd(); // путь к файлу
+    std::string address = "../sprites/" + monster->getSpriteInd(); // путь к файлу
     std::ifstream file(address);
 
     std::string artLength; 
@@ -58,7 +58,7 @@ void StateBattle::printSprite(Monster& monster) {
 
 }
 
-bool StateBattle::readySetFight(Player* player, Monster& monster) {
+bool StateBattle::readySetFight(Player* player, Monster* monster) {
 
     clear();
     
@@ -79,7 +79,7 @@ bool StateBattle::readySetFight(Player* player, Monster& monster) {
     refresh();
 
 
-    while ((player->getHealthPoints() > 0) && (monster.getTime() - passedTime > 0) && (monster.getHealthPoints() > 0)) {
+    while ((player->getHealthPoints() > 0) && (monster->getTime() - passedTime > 0) && (monster->getHealthPoints() > 0)) {
 
         if (textIndex == text.getTextLength()) {
 
@@ -91,7 +91,7 @@ bool StateBattle::readySetFight(Player* player, Monster& monster) {
 
         passedTime = timer.getPassedTime();
 
-        mvprintw(8, 128,"%d\n", monster.getTime() - passedTime); // вывод времени
+        mvprintw(8, 128,"%d\n", monster->getTime() - passedTime); // вывод времени
         refresh();
 
         bool mistake; 
@@ -108,20 +108,20 @@ bool StateBattle::readySetFight(Player* player, Monster& monster) {
             } else if (ch != text[textIndex]) { // при неверном вводе сохраняем неверный символ
 
                 mistake = true;
-                player->decreaseHealth(monster.getAttackPoints());
+                player->decreaseHealth(monster->getAttackPoints());
 
             } else { // иначе добавляем к уже набранной строке и сдвигаем индекс исходной строки на 1
 
                 text += ch; // добавляем символ к строке
                 textIndex++;
-                monster.decreaseHealth(player->getAttackPoints());
+                monster->decreaseHealth(player->getAttackPoints());
 
             }
         }
         clear();
 
 
-        if (monster.getRandomizeActive() && (passedTime % 5) == 0) {
+        if (monster->getRandomizeActive() && (passedTime % 5) == 0) {
             text.randomizeLine();
         }
 
@@ -162,10 +162,10 @@ bool StateBattle::readySetFight(Player* player, Monster& monster) {
 
     }
 
-    if (monster.getTime() - passedTime < 1 or player->getHealthPoints() < 1) { // проверяем, при каких условиях мы вышли из цикла
+    if (monster->getTime() - passedTime < 1 or player->getHealthPoints() < 1) { // проверяем, при каких условиях мы вышли из цикла
         return false; // если закончилось время, то устанавливаем соответствующий флаг
     } 
-    else if (monster.getHealthPoints() < 1) { // если закончилось здоровье монстра, то победка
+    else if (monster->getHealthPoints() < 1) { // если закончилось здоровье монстра, то победка
         return true;
     }
 

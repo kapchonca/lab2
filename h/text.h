@@ -28,7 +28,7 @@ public:
 
     void setTextLength(int length);
     
-    void setRandomLine(Monster& monster);
+    void setRandomLine(Monster* monster);
     
     void randomizeLine();
 

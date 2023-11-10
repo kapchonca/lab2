@@ -75,12 +75,12 @@ void Player::setAttackPoints(int attackPoints) {
 
 
 Inventory::Inventory() {
-
-    loot["SmallHeal"] = 0;
-    loot["MediumHeal"] = 0;
-    loot["HealthIncrease"] = 0;
-    loot["AttackIncrease"] = 0;
-
+    loot = {
+        {1, 0},
+        {2, 0},
+        {3, 0}, 
+        {4, 0}
+    };
 }
 
 void Inventory::showInventory(Player* player) {
@@ -97,19 +97,19 @@ void Inventory::showInventory(Player* player) {
         switch (i) {
 
             case 1:
-                mvprintw(15 + i, 100, "Small potions of heal: %d", loot["SmallHeal"]);
+                mvprintw(15 + i, 100, "Small potions of heal: %d", loot[1]);
                 break;
 
             case 2:
-                mvprintw(15 + i, 100, "Medium potions of heal: %d", loot["MediumHeal"]);
+                mvprintw(15 + i, 100, "Medium potions of heal: %d", loot[2]);
                 break;
 
             case 3:
-                mvprintw(15 + i, 100, "Health increase potions: %d", loot["HealthIncrease"]);
+                mvprintw(15 + i, 100, "Health increase potions: %d", loot[3]);
                 break;
 
             case 4:
-                mvprintw(15 + i, 100, "Attack increase potions: %d", loot["AttackIncrease"]);
+                mvprintw(15 + i, 100, "Attack increase potions: %d", loot[4]);
                 break;
 
         }
@@ -119,14 +119,14 @@ void Inventory::showInventory(Player* player) {
 
 }
 
-void Inventory::reduceItemCount(std::string item) {
+void Inventory::reduceItemCount(int item) {
     loot[item]--;
 }
 
-void Inventory::addItem(std::string item) {
+void Inventory::addItem(int item) {
     loot[item]++;
 }
 
-std::unordered_map<std::string, int> Inventory::getLoot() {
+std::unordered_map<int, int> Inventory::getLoot() {
     return loot;
 }

@@ -1,6 +1,6 @@
 #include "../h/text.h"
 
-void Text::setRandomLine(Monster& monster) { // достает случайную строчку для печати из базы
+void Text::setRandomLine(Monster* monster) { // достает случайную строчку для печати из базы
 
     std::ifstream dataset("../dataset");
 
@@ -14,7 +14,7 @@ void Text::setRandomLine(Monster& monster) { // достает случайну�
 
     int lineNum = rand() % 50 + 1; // т.к. ранд возвращает большие значения, берем остаток от деления
 
-    for (int i = lineNum + monster.getDatasetOffset(); i > 0; i--) {
+    for (int i = lineNum + monster->getDatasetOffset(); i > 0; i--) {
         getline(dataset, returnLine); // перебираем строки, пока не дойдем до выпавшей рандомом
     }
     

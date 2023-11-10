@@ -177,6 +177,30 @@ cpp/gameManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/cpp/gameManager.cpp.s
 .PHONY : cpp/gameManager.cpp.s
 
+cpp/items.o: cpp/items.cpp.o
+.PHONY : cpp/items.o
+
+# target to build an object file
+cpp/items.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/cpp/items.cpp.o
+.PHONY : cpp/items.cpp.o
+
+cpp/items.i: cpp/items.cpp.i
+.PHONY : cpp/items.i
+
+# target to preprocess a source file
+cpp/items.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/cpp/items.cpp.i
+.PHONY : cpp/items.cpp.i
+
+cpp/items.s: cpp/items.cpp.s
+.PHONY : cpp/items.s
+
+# target to generate assembly for a file
+cpp/items.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/cpp/items.cpp.s
+.PHONY : cpp/items.cpp.s
+
 cpp/main.o: cpp/main.cpp.o
 .PHONY : cpp/main.o
 
@@ -272,30 +296,6 @@ cpp/player.s: cpp/player.cpp.s
 cpp/player.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/cpp/player.cpp.s
 .PHONY : cpp/player.cpp.s
-
-cpp/potions.o: cpp/potions.cpp.o
-.PHONY : cpp/potions.o
-
-# target to build an object file
-cpp/potions.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/cpp/potions.cpp.o
-.PHONY : cpp/potions.cpp.o
-
-cpp/potions.i: cpp/potions.cpp.i
-.PHONY : cpp/potions.i
-
-# target to preprocess a source file
-cpp/potions.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/cpp/potions.cpp.i
-.PHONY : cpp/potions.cpp.i
-
-cpp/potions.s: cpp/potions.cpp.s
-.PHONY : cpp/potions.s
-
-# target to generate assembly for a file
-cpp/potions.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/cpp/potions.cpp.s
-.PHONY : cpp/potions.cpp.s
 
 cpp/progen.o: cpp/progen.cpp.o
 .PHONY : cpp/progen.o
@@ -408,6 +408,9 @@ help:
 	@echo "... cpp/gameManager.o"
 	@echo "... cpp/gameManager.i"
 	@echo "... cpp/gameManager.s"
+	@echo "... cpp/items.o"
+	@echo "... cpp/items.i"
+	@echo "... cpp/items.s"
 	@echo "... cpp/main.o"
 	@echo "... cpp/main.i"
 	@echo "... cpp/main.s"
@@ -420,9 +423,6 @@ help:
 	@echo "... cpp/player.o"
 	@echo "... cpp/player.i"
 	@echo "... cpp/player.s"
-	@echo "... cpp/potions.o"
-	@echo "... cpp/potions.i"
-	@echo "... cpp/potions.s"
 	@echo "... cpp/progen.o"
 	@echo "... cpp/progen.i"
 	@echo "... cpp/progen.s"

@@ -97,10 +97,24 @@ CMakeFiles/lab2.dir/cpp/gameManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab2.dir/cpp/gameManager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kapchonka/coding/classes/lab2/cpp/gameManager.cpp -o CMakeFiles/lab2.dir/cpp/gameManager.cpp.s
 
+CMakeFiles/lab2.dir/cpp/items.cpp.o: CMakeFiles/lab2.dir/flags.make
+CMakeFiles/lab2.dir/cpp/items.cpp.o: ../cpp/items.cpp
+CMakeFiles/lab2.dir/cpp/items.cpp.o: CMakeFiles/lab2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kapchonka/coding/classes/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/lab2.dir/cpp/items.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab2.dir/cpp/items.cpp.o -MF CMakeFiles/lab2.dir/cpp/items.cpp.o.d -o CMakeFiles/lab2.dir/cpp/items.cpp.o -c /home/kapchonka/coding/classes/lab2/cpp/items.cpp
+
+CMakeFiles/lab2.dir/cpp/items.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab2.dir/cpp/items.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kapchonka/coding/classes/lab2/cpp/items.cpp > CMakeFiles/lab2.dir/cpp/items.cpp.i
+
+CMakeFiles/lab2.dir/cpp/items.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab2.dir/cpp/items.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kapchonka/coding/classes/lab2/cpp/items.cpp -o CMakeFiles/lab2.dir/cpp/items.cpp.s
+
 CMakeFiles/lab2.dir/cpp/main.cpp.o: CMakeFiles/lab2.dir/flags.make
 CMakeFiles/lab2.dir/cpp/main.cpp.o: ../cpp/main.cpp
 CMakeFiles/lab2.dir/cpp/main.cpp.o: CMakeFiles/lab2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kapchonka/coding/classes/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/lab2.dir/cpp/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kapchonka/coding/classes/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/lab2.dir/cpp/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab2.dir/cpp/main.cpp.o -MF CMakeFiles/lab2.dir/cpp/main.cpp.o.d -o CMakeFiles/lab2.dir/cpp/main.cpp.o -c /home/kapchonka/coding/classes/lab2/cpp/main.cpp
 
 CMakeFiles/lab2.dir/cpp/main.cpp.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/lab2.dir/cpp/main.cpp.s: cmake_force
 CMakeFiles/lab2.dir/cpp/map.cpp.o: CMakeFiles/lab2.dir/flags.make
 CMakeFiles/lab2.dir/cpp/map.cpp.o: ../cpp/map.cpp
 CMakeFiles/lab2.dir/cpp/map.cpp.o: CMakeFiles/lab2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kapchonka/coding/classes/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/lab2.dir/cpp/map.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kapchonka/coding/classes/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/lab2.dir/cpp/map.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab2.dir/cpp/map.cpp.o -MF CMakeFiles/lab2.dir/cpp/map.cpp.o.d -o CMakeFiles/lab2.dir/cpp/map.cpp.o -c /home/kapchonka/coding/classes/lab2/cpp/map.cpp
 
 CMakeFiles/lab2.dir/cpp/map.cpp.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/lab2.dir/cpp/map.cpp.s: cmake_force
 CMakeFiles/lab2.dir/cpp/monster.cpp.o: CMakeFiles/lab2.dir/flags.make
 CMakeFiles/lab2.dir/cpp/monster.cpp.o: ../cpp/monster.cpp
 CMakeFiles/lab2.dir/cpp/monster.cpp.o: CMakeFiles/lab2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kapchonka/coding/classes/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/lab2.dir/cpp/monster.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kapchonka/coding/classes/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/lab2.dir/cpp/monster.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab2.dir/cpp/monster.cpp.o -MF CMakeFiles/lab2.dir/cpp/monster.cpp.o.d -o CMakeFiles/lab2.dir/cpp/monster.cpp.o -c /home/kapchonka/coding/classes/lab2/cpp/monster.cpp
 
 CMakeFiles/lab2.dir/cpp/monster.cpp.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/lab2.dir/cpp/monster.cpp.s: cmake_force
 CMakeFiles/lab2.dir/cpp/player.cpp.o: CMakeFiles/lab2.dir/flags.make
 CMakeFiles/lab2.dir/cpp/player.cpp.o: ../cpp/player.cpp
 CMakeFiles/lab2.dir/cpp/player.cpp.o: CMakeFiles/lab2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kapchonka/coding/classes/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/lab2.dir/cpp/player.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kapchonka/coding/classes/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/lab2.dir/cpp/player.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab2.dir/cpp/player.cpp.o -MF CMakeFiles/lab2.dir/cpp/player.cpp.o.d -o CMakeFiles/lab2.dir/cpp/player.cpp.o -c /home/kapchonka/coding/classes/lab2/cpp/player.cpp
 
 CMakeFiles/lab2.dir/cpp/player.cpp.i: cmake_force
@@ -152,20 +166,6 @@ CMakeFiles/lab2.dir/cpp/player.cpp.i: cmake_force
 CMakeFiles/lab2.dir/cpp/player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab2.dir/cpp/player.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kapchonka/coding/classes/lab2/cpp/player.cpp -o CMakeFiles/lab2.dir/cpp/player.cpp.s
-
-CMakeFiles/lab2.dir/cpp/potions.cpp.o: CMakeFiles/lab2.dir/flags.make
-CMakeFiles/lab2.dir/cpp/potions.cpp.o: ../cpp/potions.cpp
-CMakeFiles/lab2.dir/cpp/potions.cpp.o: CMakeFiles/lab2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kapchonka/coding/classes/lab2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/lab2.dir/cpp/potions.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab2.dir/cpp/potions.cpp.o -MF CMakeFiles/lab2.dir/cpp/potions.cpp.o.d -o CMakeFiles/lab2.dir/cpp/potions.cpp.o -c /home/kapchonka/coding/classes/lab2/cpp/potions.cpp
-
-CMakeFiles/lab2.dir/cpp/potions.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab2.dir/cpp/potions.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kapchonka/coding/classes/lab2/cpp/potions.cpp > CMakeFiles/lab2.dir/cpp/potions.cpp.i
-
-CMakeFiles/lab2.dir/cpp/potions.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab2.dir/cpp/potions.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kapchonka/coding/classes/lab2/cpp/potions.cpp -o CMakeFiles/lab2.dir/cpp/potions.cpp.s
 
 CMakeFiles/lab2.dir/cpp/progen.cpp.o: CMakeFiles/lab2.dir/flags.make
 CMakeFiles/lab2.dir/cpp/progen.cpp.o: ../cpp/progen.cpp
@@ -227,11 +227,11 @@ CMakeFiles/lab2.dir/cpp/timer.cpp.s: cmake_force
 lab2_OBJECTS = \
 "CMakeFiles/lab2.dir/cpp/chest.cpp.o" \
 "CMakeFiles/lab2.dir/cpp/gameManager.cpp.o" \
+"CMakeFiles/lab2.dir/cpp/items.cpp.o" \
 "CMakeFiles/lab2.dir/cpp/main.cpp.o" \
 "CMakeFiles/lab2.dir/cpp/map.cpp.o" \
 "CMakeFiles/lab2.dir/cpp/monster.cpp.o" \
 "CMakeFiles/lab2.dir/cpp/player.cpp.o" \
-"CMakeFiles/lab2.dir/cpp/potions.cpp.o" \
 "CMakeFiles/lab2.dir/cpp/progen.cpp.o" \
 "CMakeFiles/lab2.dir/cpp/stateBattle.cpp.o" \
 "CMakeFiles/lab2.dir/cpp/text.cpp.o" \
@@ -242,11 +242,11 @@ lab2_EXTERNAL_OBJECTS =
 
 lab2: CMakeFiles/lab2.dir/cpp/chest.cpp.o
 lab2: CMakeFiles/lab2.dir/cpp/gameManager.cpp.o
+lab2: CMakeFiles/lab2.dir/cpp/items.cpp.o
 lab2: CMakeFiles/lab2.dir/cpp/main.cpp.o
 lab2: CMakeFiles/lab2.dir/cpp/map.cpp.o
 lab2: CMakeFiles/lab2.dir/cpp/monster.cpp.o
 lab2: CMakeFiles/lab2.dir/cpp/player.cpp.o
-lab2: CMakeFiles/lab2.dir/cpp/potions.cpp.o
 lab2: CMakeFiles/lab2.dir/cpp/progen.cpp.o
 lab2: CMakeFiles/lab2.dir/cpp/stateBattle.cpp.o
 lab2: CMakeFiles/lab2.dir/cpp/text.cpp.o

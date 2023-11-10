@@ -12,17 +12,17 @@ class Inventory {
 
 private:
 
-    std::unordered_map<std::string, int> loot;
+    std::unordered_map<int, int> loot;
 
 public:
 
     void showInventory(Player* player);
     
-    void addItem(std::string item);
+    void addItem(int item);
 
-    void reduceItemCount(std::string item);
+    void reduceItemCount(int item);
 
-    std::unordered_map<std::string, int> getLoot();
+    std::unordered_map<int, int> getLoot();
 
     Inventory();
 };

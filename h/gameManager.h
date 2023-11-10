@@ -15,23 +15,27 @@ protected:
 
     Player* player;
 
-    StateBattle battle;
+    StateBattle* battle;
 
+    Monster* monster;
+
+    Boss* boss;
+
+    Map* map;
 
 public:
 
     GameManager();
 
-    ~GameManager() {delete player;};
-
+    ~GameManager();
 
     void StateHandler();
 
     std::string getRandomLine();
 
-    void loadInterface(Player* player, Monster& monster);
+    void loadInterface(Player* player, Monster* monster);
 
-    void printSprite(Monster monster);
+    void printSprite(Monster* monster);
 
     bool gameIsOver();
 
@@ -41,11 +45,15 @@ public:
 
     void stateInventory(Player* player);
 
-    void recieveLoot(Player* player, Monster& monster);
+    void recieveLoot(Player* player, Monster* monster);
 
-    Monster getRandomMonster(Player* player);
+    Monster* getRandomMonster(Player* player);
+
+    void generateBoss(Player* player, int loopCounter);
 
     void windowInitializer();
+
+    void generateMap();
 
 };
 

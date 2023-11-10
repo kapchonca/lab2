@@ -49,6 +49,7 @@ public:
     void decreaseHealth(int attack);
 
     void setHealthPoints(int healthPoints);
+    
 };
 
 class Boss : public Monster {

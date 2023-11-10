@@ -1,14 +1,34 @@
 
 #include "../h/gameManager.h"
 
-
 GameManager::GameManager() {
     int loopCounter = 0;
 
     player = new Player();
 
+    boss = nullptr;
+    monster = nullptr;
+    map = nullptr;
+
+    battle = new StateBattle();
 }
 
+GameManager::~GameManager() {
+    delete player; 
+    player = nullptr; 
+
+    delete monster; 
+    monster = nullptr; 
+
+    delete boss; 
+    boss = nullptr; 
+
+    delete battle; 
+    battle = nullptr;
+
+    delete map;
+    map = nullptr;
+}
 
 bool GameManager::gameIsOver() {
 
@@ -27,23 +47,42 @@ void GameManager::setGameOver() {
     s_GameIsOver = true;
 }
 
-Monster GameManager::getRandomMonster(Player* player) {
+Monster* GameManager::getRandomMonster(Player* player) {
 
-    Monster monster(player);
+    if (monster != nullptr) {
+        delete monster;
+    }
 
     if (rand() % 3 == 0) {
-
-        monster = Skeleton(player);
+        monster = new Skeleton(player);
 
     } else if (rand() % 3 == 1) {
-
-        monster = Vampire(player);
+        monster = new Vampire(player);
 
     } else {
-
-        monster = Dragon(player);
+        monster = new Dragon(player);
     }
+
     return monster;
+    
+}
+
+void GameManager::generateBoss(Player* player, int loopCount) {
+
+    if (boss != nullptr) {
+        delete boss;
+    }
+    boss = new Boss(player, loopCount);
+
+}
+
+void GameManager::generateMap() {
+
+    if (map != nullptr) {
+        delete map;
+    }
+    map = new Map(238, 59, 10);
+
 }
 
 void GameManager::stateInventory(Player* player) {
@@ -61,32 +100,19 @@ void GameManager::stateInventory(Player* player) {
             break;
         }
 
-        if (ch == '1' and inv->getLoot()["SmallHeal"] != 0) {
+        if (player->getInventory()->getLoot()[(static_cast<int>(ch) - 48)] != 0) { 
+            // -48 - это приведение символа к инту по ascii таблице
+            clear();
+            Item* item = Item::createItem((static_cast<int>(ch) - 48));
 
-            PotionOfHealSmall potion;
-            inv->reduceItemCount("SmallHeal");
-            potion.useItem(player);
+            inv->reduceItemCount(static_cast<int>(ch) - 48);
 
-        } else if (ch == '2' and inv->getLoot()["MediumHeal"] != 0) {
+            item->useItem(player);
 
-            PotionOfHealMedium potion;
-            inv->reduceItemCount("MediumHeal");
-            potion.useItem(player);
-            
-        } else if (ch == '3' and inv->getLoot()["HealthIncrease"] != 0) {
+            delete item;
+            item = nullptr;
 
-            HealthScroll potion;
-            inv->reduceItemCount("HealthIncrease");
-            potion.useItem(player);
-            
-        } else if (ch == '4' and inv->getLoot()["AttackIncrease"] != 0) {
-
-            AttackScroll potion;
-            inv->reduceItemCount("AttackIncrease");
-            potion.useItem(player);
-            
         }
-        
         
     }
 
@@ -96,7 +122,7 @@ void GameManager::windowInitializer() {
 
     initscr(); // инициализирует библиотеку ncurses и подготавливает терминал к работе
     start_color(); // подключает поддержку цветов
-    curs_set(0); // Hide the cursor
+    curs_set(0); // прячет курсор
 
 }
 
@@ -104,11 +130,11 @@ void GameManager::StateHandler() {
 
     windowInitializer();
 
-    Map map(238, 59, 10);
+    generateMap();
 
     while (!gameIsOver()) {
 
-        int interactionNum = map.movePlayer();
+        int interactionNum = map->movePlayer();
 
         if (interactionNum == 0) {
 
@@ -119,34 +145,16 @@ void GameManager::StateHandler() {
                 clear();
                 Chest chest;    
                 
-                if (chest.returnLoot()[0] == 1) {
-                    
-                    (player->getInventory())->addItem("SmallHeal");
+                player->getInventory()->addItem(chest.returnLoot()[0]);
 
-                } else if (chest.returnLoot()[0] == 2) {
-                    
-                    player->getInventory()->addItem("MediumHeal");
-                    
-                } else if (chest.returnLoot()[0] == 3) {
-                    
-                    player->getInventory()->addItem("HealthIncrease");
-                    
-                } else if (chest.returnLoot()[0] == 4) {
-                    
-                    player->getInventory()->addItem("AttackIncrease");
-                    
-                }
-
-
-                
                 chest.displayChest();
-                getch();
+                getch(); // функция, хватающая нажатый символ
 
         } else if (interactionNum == 1) {
 
-                Monster monster = getRandomMonster(player);
+                monster = getRandomMonster(player);
 
-                if(battle.readySetFight(player, monster)) {
+                if(battle->readySetFight(player, monster)) {
 
                     recieveLoot(player, monster);
                     clear();
@@ -163,12 +171,14 @@ void GameManager::StateHandler() {
 
         } else if (interactionNum == 4) {
 
-                Boss boss(player, loopCounter);
+                generateBoss(player, loopCounter);
 
-                if (battle.readySetFight(player, boss)) {
+                if (battle->readySetFight(player, boss)) {
 
                     recieveLoot(player, boss);
-                    map = Map(238, 59, 10);
+                    
+                    generateMap();
+
                     increaseLoopCount();
 
                     clear();
@@ -185,7 +195,7 @@ void GameManager::StateHandler() {
     endwin(); // закрытие окошка
 }
 
-void GameManager::recieveLoot(Player* player, Monster& monster) {
+void GameManager::recieveLoot(Player* player, Monster* monster) {
 
     int xpToGet = player->getXpLimit() / 10 + rand() % player->getXpLimit() / 10;
 
@@ -194,9 +204,9 @@ void GameManager::recieveLoot(Player* player, Monster& monster) {
 
     bool specialLoot = (rand() % 4) == 0;
 
-    if (specialLoot && monster.getSpriteInd() == "1") {
+    if (specialLoot && monster->getSpriteInd() == "1") {
 
-        player->getInventory()->addItem("SmallHeal"); // дописать для остальных монстров
+        player->getInventory()->addItem(1);
 
     }
 }
