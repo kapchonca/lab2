@@ -7,7 +7,7 @@ include_directories(${CURSES_INCLUDE_DIR})
 file(GLOB SOURCES
     h/*.h
     cpp/*.cpp)
-
+ 
 add_executable(lab2 ${SOURCES})
 
 target_link_libraries(lab2 ${CURSES_LIBRARIES} tinfo)
