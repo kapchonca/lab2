@@ -4,6 +4,7 @@
 #include "../h/map.h"
 #include "../h/stateBattle.h"
 #include "../h/chest.h"
+#include "../h/items.h"
 
 class GameManager {
 

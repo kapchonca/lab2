@@ -123,6 +123,8 @@ void GameManager::windowInitializer() {
     initscr(); // инициализирует библиотеку ncurses и подготавливает терминал к работе
     start_color(); // подключает поддержку цветов
     curs_set(0); // прячет курсор
+    init_pair(1, COLOR_WHITE, 160); // инициализация цветовой палитры
+    init_pair(2, 242, COLOR_BLACK);
 
 }
 

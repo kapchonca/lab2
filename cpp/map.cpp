@@ -2,24 +2,26 @@
 
 Map::Map(int width, int height, int roomsCount) {
 
-    ProceduralGeneration new_generation(width, height);
-    new_generation.generateMap(roomsCount);
+    new_generation = new ProceduralGeneration(width, height);
+    new_generation->generateMap(roomsCount);
 
-    mapHeight = new_generation.getHeight();
+    mapHeight = new_generation->getHeight();
     
     mapLayout.resize(mapHeight);
     mapFogLayout.resize(mapHeight);
 
-    chestCoords = new_generation.getChestsCoords();
+    chestCoords = new_generation->getChestsCoords();
 
 
     for (int i = 0; i < mapHeight; i++) {
-        mapLayout[i] = new_generation.getMap()[i];
+        mapLayout[i] = new_generation->getMap()[i];
     }
     for (int i = 0; i < mapHeight; i++) {
-        mapFogLayout[i] = new_generation.getMapFog()[i];
+        mapFogLayout[i] = new_generation->getMapFog()[i];
     }
 
+    delete new_generation;
+    new_generation = nullptr;
 }
 
 void Map::displayMap() {
@@ -27,7 +29,7 @@ void Map::displayMap() {
     clear();
 
     for (int i = 0; i < mapHeight; i++) {
-        printw("%s", mapFogLayout[i].c_str()); // вывод спрайта на экран
+        printw("%s", mapFogLayout[i].c_str());
     }
 }
 

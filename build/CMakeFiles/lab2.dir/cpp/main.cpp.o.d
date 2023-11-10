@@ -191,4 +191,5 @@ CMakeFiles/lab2.dir/cpp/main.cpp.o: \
  /usr/include/c++/11/bits/fstream.tcc \
  /home/kapchonka/coding/classes/lab2/cpp/../h/../h/../h/../h/monster.h \
  /home/kapchonka/coding/classes/lab2/cpp/../h/../h/chest.h \
- /home/kapchonka/coding/classes/lab2/cpp/../h/../h/../h/items.h
+ /home/kapchonka/coding/classes/lab2/cpp/../h/../h/items.h \
+ /home/kapchonka/coding/classes/lab2/cpp/../h/../h/../h/player.h

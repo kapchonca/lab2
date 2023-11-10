@@ -29,13 +29,13 @@ class ProceduralGeneration {
 
 private:
 
-    int m_width, m_height;     // размеры карты
+    int m_width, m_height;
 
-    std::vector<std::string> m_data;   // финальные данные карты
+    std::vector<std::string> m_data;
 
     std::vector<std::string> m_dataFog;
 
-    std::vector<Room> m_rooms; // комнаты
+    std::vector<Room> m_rooms;
 
     std::vector<Point> chests;
 

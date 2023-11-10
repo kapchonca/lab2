@@ -1,11 +1,11 @@
 #ifndef CHEST
 #define CHEST
 
+#include <ncurses.h>
+
 #include <fstream>
 #include <ctime>
 #include <vector>
-
-#include "../h/items.h"
 
 class Chest{
 
@@ -24,5 +24,3 @@ public:
 };
 
 #endif //CHEST
-
-// chest indexes: 1 - medium heal, 2 - small heal

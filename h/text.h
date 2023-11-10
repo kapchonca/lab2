@@ -14,7 +14,7 @@ protected:
     
     std::string lineToPrint;
 
-    std::string letters = ""; // хранит введенные символы
+    std::string letters = ""; 
 
 public:
 

@@ -7,10 +7,10 @@ Timer::Timer() {
 
 int Timer::getPassedTime() {
 
-    auto end = std::chrono::steady_clock::now(); // каждый раз обновляем время
+    auto end = std::chrono::steady_clock::now();
 
     auto elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(end - start);
-    int timePassed = elapsedTime.count(); // приводит тип к инту
+    int timePassed = elapsedTime.count(); 
     
     return timePassed;
 }

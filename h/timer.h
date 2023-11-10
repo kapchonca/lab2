@@ -7,7 +7,7 @@ class Timer {
     
 protected:
 
-    std::chrono::steady_clock::time_point start;  // начало счетчика времени; // начало счетчика времени
+    std::chrono::steady_clock::time_point start;
 
 public:
 

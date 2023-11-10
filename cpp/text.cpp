@@ -1,6 +1,6 @@
 #include "../h/text.h"
 
-void Text::setRandomLine(Monster* monster) { // достает случайную строчку для печати из базы
+void Text::setRandomLine(Monster* monster) {
 
     std::ifstream dataset("../dataset");
 
@@ -10,12 +10,10 @@ void Text::setRandomLine(Monster* monster) { // достает случайну�
 
     std::string returnLine;
 
-    srand(time(0)); // обновляем сид функции рандома при помощи текущего времени
-
-    int lineNum = rand() % 50 + 1; // т.к. ранд возвращает большие значения, берем остаток от деления
+    int lineNum = rand() % 50 + 1;
 
     for (int i = lineNum + monster->getDatasetOffset(); i > 0; i--) {
-        getline(dataset, returnLine); // перебираем строки, пока не дойдем до выпавшей рандомом
+        getline(dataset, returnLine);
     }
     
     lineToPrint = returnLine;
@@ -25,8 +23,6 @@ void Text::setRandomLine(Monster* monster) { // достает случайну�
 void Text::randomizeLine() {
 
     for (int i = 0; i < lineToPrint.size(); i++) {
-
-        srand((std::chrono::duration_cast< std::chrono::nanoseconds >(std::chrono::system_clock::now().time_since_epoch()).count()));
 
         if (rand() % 3 == 0) {
 

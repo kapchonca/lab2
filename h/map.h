@@ -15,6 +15,7 @@ protected:
     std::vector<std::string> mapFogLayout; 
 
     std::vector<Point> chestCoords;
+    ProceduralGeneration* new_generation;
 
 public:
 
