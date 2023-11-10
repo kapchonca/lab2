@@ -8,13 +8,18 @@
 
 class StateBattle {
 
+private:
+
+    Timer timer;
+    Text text;
+
 public:
 
-    void loadInterface(Player& player, Monster& monster);
+    void loadInterface(Player* player, Monster& monster);
 
     void printSprite(Monster& monster);
     
-    bool readySetFight(Player& player, Monster& monster);
+    bool readySetFight(Player* player, Monster& monster);
 
     void displaySentence();
 };

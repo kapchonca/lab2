@@ -13,13 +13,23 @@ protected:
     
     bool s_GameIsOver = false;
 
+    Player* player;
+
+    StateBattle battle;
+
+
 public:
+
+    GameManager();
+
+    ~GameManager() {delete player;};
+
 
     void StateHandler();
 
     std::string getRandomLine();
 
-    void loadInterface(Player& player, Monster& monster);
+    void loadInterface(Player* player, Monster& monster);
 
     void printSprite(Monster monster);
 
@@ -29,11 +39,11 @@ public:
 
     void increaseLoopCount();
 
-    void stateInventory(Player& player);
+    void stateInventory(Player* player);
 
-    void recieveLoot(Player& player, Monster& monster);
+    void recieveLoot(Player* player, Monster& monster);
 
-    Monster getRandomMonster(Player& player);
+    Monster getRandomMonster(Player* player);
 
     void windowInitializer();
 

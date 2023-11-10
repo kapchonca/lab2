@@ -1,18 +1,32 @@
 #include "../h/potions.h"
 
-void BasePotionOfHealing::drinkPotion(Player& player) {
+void PotionOfHealSmall::useItem(Player* player) {
 
-    if (divider) {
+    int effect = player->getHealthMax() / 4;
+    player->increaseHealth(effect);
+    
+}
 
-        int effect = player.getHealthMax() / divider;
-        player.increaseHealth(effect);
+void PotionOfHealMedium::useItem(Player* player) {
+
+    int effect = player->getHealthMax() / 2;
+    player->increaseHealth(effect);
+    
+}
+
+void AttackScroll::useItem(Player* player) {
+
+    player->setAttackPoints(player->getAttackPoints() + 1);
         
-    }
 }
 
-PotionOfHealSmall::PotionOfHealSmall() {
-    divider = 4;
+void HealthScroll::useItem(Player* player) {
+
+    player->setHealthMax(player->getHealthMax() + 20);
+        
 }
-PotionOfHealMedium::PotionOfHealMedium() {
-    divider = 2;
+
+
+void Item::decreaseItemCounter(Player* player) {
+    player->getInventory()->reduceItemCount(name);
 }

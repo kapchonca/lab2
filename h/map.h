@@ -24,8 +24,6 @@ public:
 
     int movePlayer();
 
-    void removeEntity(Monster monster);
-
     void removeChest(int chestInd);
 
     void fieldOfView(int y, int x);

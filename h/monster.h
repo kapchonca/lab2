@@ -28,7 +28,7 @@ protected:
 
 public:
 
-    Monster(Player& player);
+    Monster(Player* player);
 
     int getTime();
 
@@ -37,10 +37,6 @@ public:
     int getHealthPoints();
 
     int getAttackPoints();
-
-    int getPositionX();
-
-    int getPositionY();
 
     int getDatasetOffset();
 
@@ -59,14 +55,14 @@ class Boss : public Monster {
 
 public:
 
-    Boss(Player& player, int loopNumber);
+    Boss(Player* player, int loopNumber);
 };
 
 class Dragon : public Monster {
 
 public:
 
-    Dragon(Player& player);
+    Dragon(Player* player);
 
 };
 
@@ -74,7 +70,7 @@ class Skeleton : public Monster {
 
 public:
 
-    Skeleton(Player& player);
+    Skeleton(Player* player);
 
 };
 
@@ -82,7 +78,7 @@ class Vampire : public Monster {
 
 public:
 
-    Vampire(Player& player);
+    Vampire(Player* player);
 };
 
 #endif // MONSTER

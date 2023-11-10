@@ -1,0 +1,3 @@
+/home/kapchonka/coding/classes/lab2/build/CMakeFiles/lab2.dir
+/home/kapchonka/coding/classes/lab2/build/CMakeFiles/edit_cache.dir
+/home/kapchonka/coding/classes/lab2/build/CMakeFiles/rebuild_cache.dir

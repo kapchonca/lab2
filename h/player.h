@@ -16,7 +16,7 @@ private:
 
 public:
 
-    void showInventory(Player& player);
+    void showInventory(Player* player);
     
     void addItem(std::string item);
 
@@ -41,11 +41,13 @@ protected:
     int xp = 0;
     int xpLimit = 50;
 
-    Inventory playerInventory;
+    Inventory* playerInventory;
 
 public:
 
-    Player(Inventory inventory) : playerInventory(inventory) {}
+    Player();
+
+    ~Player() {delete playerInventory;};
 
     void levelUp();
 
@@ -70,6 +72,10 @@ public:
     Inventory* getInventory();
 
     void setHealthPoints(int healthPoints);
+
+    void setHealthMax(int newHealth);
+
+    void setAttackPoints(int attackPoints);
     
 };
 

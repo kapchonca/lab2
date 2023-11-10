@@ -1,6 +1,15 @@
 
 #include "../h/gameManager.h"
 
+
+GameManager::GameManager() {
+    int loopCounter = 0;
+
+    player = new Player();
+
+}
+
+
 bool GameManager::gameIsOver() {
 
     if (s_GameIsOver) {
@@ -18,31 +27,30 @@ void GameManager::setGameOver() {
     s_GameIsOver = true;
 }
 
-Monster GameManager::getRandomMonster(Player& player) {
+Monster GameManager::getRandomMonster(Player* player) {
+
+    Monster monster(player);
 
     if (rand() % 3 == 0) {
 
-        Skeleton monster(player);
-        return monster;
+        monster = Skeleton(player);
 
     } else if (rand() % 3 == 1) {
 
-        Vampire monster(player);
-        return monster;
+        monster = Vampire(player);
 
     } else {
 
-        Dragon monster(player);
-        return monster;
-
+        monster = Dragon(player);
     }
+    return monster;
 }
 
-void GameManager::stateInventory(Player& player) {
+void GameManager::stateInventory(Player* player) {
 
     int ch;
 
-    Inventory* inv = player.getInventory();
+    Inventory* inv = player->getInventory();
 
     while (true) {
 
@@ -57,15 +65,28 @@ void GameManager::stateInventory(Player& player) {
 
             PotionOfHealSmall potion;
             inv->reduceItemCount("SmallHeal");
-            potion.drinkPotion(player);
+            potion.useItem(player);
 
         } else if (ch == '2' and inv->getLoot()["MediumHeal"] != 0) {
 
             PotionOfHealMedium potion;
             inv->reduceItemCount("MediumHeal");
-            potion.drinkPotion(player);
+            potion.useItem(player);
+            
+        } else if (ch == '3' and inv->getLoot()["HealthIncrease"] != 0) {
+
+            HealthScroll potion;
+            inv->reduceItemCount("HealthIncrease");
+            potion.useItem(player);
+            
+        } else if (ch == '4' and inv->getLoot()["AttackIncrease"] != 0) {
+
+            AttackScroll potion;
+            inv->reduceItemCount("AttackIncrease");
+            potion.useItem(player);
             
         }
+        
         
     }
 
@@ -83,8 +104,6 @@ void GameManager::StateHandler() {
 
     windowInitializer();
 
-    Inventory inventory;
-    Player player(inventory);
     Map map(238, 59, 10);
 
     while (!gameIsOver()) {
@@ -102,13 +121,23 @@ void GameManager::StateHandler() {
                 
                 if (chest.returnLoot()[0] == 1) {
                     
-                    (player.getInventory())->addItem("SmallHeal");
+                    (player->getInventory())->addItem("SmallHeal");
 
-                } else {
+                } else if (chest.returnLoot()[0] == 2) {
                     
-                    player.getInventory()->addItem("MediumHeal");
+                    player->getInventory()->addItem("MediumHeal");
+                    
+                } else if (chest.returnLoot()[0] == 3) {
+                    
+                    player->getInventory()->addItem("HealthIncrease");
+                    
+                } else if (chest.returnLoot()[0] == 4) {
+                    
+                    player->getInventory()->addItem("AttackIncrease");
                     
                 }
+
+
                 
                 chest.displayChest();
                 getch();
@@ -116,7 +145,6 @@ void GameManager::StateHandler() {
         } else if (interactionNum == 1) {
 
                 Monster monster = getRandomMonster(player);
-                StateBattle battle;
 
                 if(battle.readySetFight(player, monster)) {
 
@@ -136,7 +164,6 @@ void GameManager::StateHandler() {
         } else if (interactionNum == 4) {
 
                 Boss boss(player, loopCounter);
-                StateBattle battle;
 
                 if (battle.readySetFight(player, boss)) {
 
@@ -158,18 +185,18 @@ void GameManager::StateHandler() {
     endwin(); // закрытие окошка
 }
 
-void GameManager::recieveLoot(Player& player, Monster& monster) {
+void GameManager::recieveLoot(Player* player, Monster& monster) {
 
-    int xpToGet = player.getXpLimit() / 10 + rand() % player.getXpLimit() / 10;
+    int xpToGet = player->getXpLimit() / 10 + rand() % player->getXpLimit() / 10;
 
-    player.addExp(xpToGet);
-    player.levelUp();
+    player->addExp(xpToGet);
+    player->levelUp();
 
     bool specialLoot = (rand() % 4) == 0;
 
     if (specialLoot && monster.getSpriteInd() == "1") {
 
-        player.getInventory()->addItem("SmallHeal"); // дописать для остальных монстров
+        player->getInventory()->addItem("SmallHeal"); // дописать для остальных монстров
 
     }
 }

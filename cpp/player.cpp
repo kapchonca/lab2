@@ -1,5 +1,9 @@
 #include "../h/player.h"
 
+Player::Player() {
+    playerInventory = new Inventory;
+}
+
 void Player::decreaseHealth(int attackPoints) {
     healthPoints -= attackPoints;
 }
@@ -36,7 +40,7 @@ int Player::getXp() {
 }
 
 Inventory* Player::getInventory() {
-    return &playerInventory;
+    return playerInventory;
 }
 
 void Player::setHealthPoints(int healthPoints) {
@@ -61,23 +65,34 @@ void Player::levelUp() {
 
 }
 
+void Player::setHealthMax(int newHealth) {
+    this->healthMax = newHealth;
+}
+
+void Player::setAttackPoints(int attackPoints) {
+    this->attackPoints = attackPoints;
+}
+
+
 Inventory::Inventory() {
 
     loot["SmallHeal"] = 0;
     loot["MediumHeal"] = 0;
+    loot["HealthIncrease"] = 0;
+    loot["AttackIncrease"] = 0;
 
 }
 
-void Inventory::showInventory(Player& player) {
+void Inventory::showInventory(Player* player) {
 
     clear();
 
-    mvprintw(12, 100, "Health: %d/%d", player.getHealthPoints(), player.getHealthMax());
-    mvprintw(13, 100, "Attack: %d", player.getAttackPoints());
-    mvprintw(14, 100, "Level: %d", player.getLevel());
-    mvprintw(15, 100, "Xp: %d/%d", player.getXp(), player.getXpLimit());
+    mvprintw(12, 100, "Health: %d/%d", player->getHealthPoints(), player->getHealthMax());
+    mvprintw(13, 100, "Attack: %d", player->getAttackPoints());
+    mvprintw(14, 100, "Level: %d", player->getLevel());
+    mvprintw(15, 100, "Xp: %d/%d", player->getXp(), player->getXpLimit());
 
-    for (int i = 1; i < 3; i++) {
+    for (int i = 1; i < 5; i++) {
 
         switch (i) {
 
@@ -89,8 +104,15 @@ void Inventory::showInventory(Player& player) {
                 mvprintw(15 + i, 100, "Medium potions of heal: %d", loot["MediumHeal"]);
                 break;
 
-        }
+            case 3:
+                mvprintw(15 + i, 100, "Health increase potions: %d", loot["HealthIncrease"]);
+                break;
 
+            case 4:
+                mvprintw(15 + i, 100, "Attack increase potions: %d", loot["AttackIncrease"]);
+                break;
+
+        }
     }
 
     refresh();

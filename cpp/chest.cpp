@@ -4,11 +4,8 @@ Chest::Chest() {
 
     srand(time(0));
     
-    if (rand() % 2 == 0) {
-        loot.push_back(2);
-    } else {
-        loot.push_back(1);
-    }
+    loot.push_back(rand() % 4 + 1);
+    
 }
 
 std::vector<int> Chest::returnLoot() {

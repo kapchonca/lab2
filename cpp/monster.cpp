@@ -1,15 +1,15 @@
 #include "../h/monster.h"
 
-Monster::Monster(Player& player) {
+Monster::Monster(Player* player) {
 
     srand(time(0));
 
     baseModifier = 1 + (rand() % 5) / 10.;
 
-    healthMax = player.getAttackPoints() * 70 * baseModifier + rand() % 100;
+    healthMax = player->getAttackPoints() * 70 * baseModifier + rand() % 100;
     healthPoints = healthMax;
 
-    attackPoints = player.getHealthMax() / 20 * baseModifier + rand() % 4;
+    attackPoints = player->getHealthMax() / 20 * baseModifier + rand() % 4;
 
     monsterTime = 40 * baseModifier;
 
@@ -57,7 +57,7 @@ void Monster::setHealthPoints(int healthPoints) {
     this->healthPoints = healthPoints;
 }
 
-Boss::Boss(Player& player, int loopNumber) : Monster(player) {
+Boss::Boss(Player* player, int loopNumber) : Monster(player) {
 
     name = "LAB 2";
     spriteInd = "4";
@@ -75,7 +75,7 @@ Boss::Boss(Player& player, int loopNumber) : Monster(player) {
 
 }
 
-Dragon::Dragon(Player& player) : Monster(player) {
+Dragon::Dragon(Player* player) : Monster(player) {
 
     datasetOffset = 50;
     name = "DRAGON";
@@ -83,7 +83,7 @@ Dragon::Dragon(Player& player) : Monster(player) {
 
 }
 
-Skeleton::Skeleton(Player& player) : Monster(player) {
+Skeleton::Skeleton(Player* player) : Monster(player) {
 
     datasetOffset = 150;
     name = "SKELETON";
@@ -91,7 +91,7 @@ Skeleton::Skeleton(Player& player) : Monster(player) {
 
 }
 
-Vampire::Vampire(Player& player) : Monster(player) {
+Vampire::Vampire(Player* player) : Monster(player) {
 
     datasetOffset = 100;
     name = "VAMPIRE";
