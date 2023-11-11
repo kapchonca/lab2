@@ -47,6 +47,28 @@ void GameManager::setGameOver() {
     s_GameIsOver = true;
 }
 
+void GameManager::printGameOver() {
+
+    clear();
+    mvprintw(27, 113, "GAME OVER");
+    mvprintw(28, 108, "Press any key to quit");
+
+    timeout(-1);
+    getch();
+}
+
+void GameManager::nextLoop() {
+
+    generateMap();
+
+    increaseLoopCount();
+
+    clear();
+    mvprintw(28, 100, "Stages completed: %d", loopCounter);
+    timeout(-1);
+    getch();
+}
+
 Monster* GameManager::getRandomMonster(Player* player) {
 
     if (monster != nullptr) {
@@ -140,7 +162,7 @@ void GameManager::StateHandler() {
 
         if (interactionNum == 0) {
 
-                setGameOver();
+            setGameOver();
 
         } else if (interactionNum == 2) {
 
@@ -163,6 +185,7 @@ void GameManager::StateHandler() {
 
                 } else {
 
+                    printGameOver();
                     setGameOver();
 
                 }
@@ -178,12 +201,8 @@ void GameManager::StateHandler() {
                 if (battle->readySetFight(player, boss)) {
 
                     recieveLoot(player, boss);
-                    
-                    generateMap();
 
-                    increaseLoopCount();
-
-                    clear();
+                    nextLoop();
 
                 } else {
 

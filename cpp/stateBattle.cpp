@@ -72,6 +72,8 @@ bool StateBattle::readySetFight(Player* player, Monster* monster) {
     mvprintw(48, 115, "YOUR LINE:");
     refresh();
 
+    timer.startTimestamp();
+
     while ((player->getHealthPoints() > 0) && (monster->getTime() - passedTime > 0) && (monster->getHealthPoints() > 0)) {
 
         if (textIndex == text.getTextLength()) {
@@ -120,12 +122,9 @@ bool StateBattle::readySetFight(Player* player, Monster* monster) {
 
         int maxY, maxX;
         getmaxyx(stdscr, maxY, maxX);
-        int centerY = maxY / 2;
         int centerX = maxX / 2;
 
         move(48, centerX - text.getTextLength() / 2); // передвигает курсор 
-
-
 
         attron(COLOR_PAIR(2)); // включение цветового паттерна
 
@@ -158,10 +157,8 @@ bool StateBattle::readySetFight(Player* player, Monster* monster) {
     if (monster->getTime() - passedTime < 1 or player->getHealthPoints() < 1) { 
         return false; 
     } 
-    else if (monster->getHealthPoints() < 1) { 
-        return true;
-    }
-
+    
     return true;
+
 }
 

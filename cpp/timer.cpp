@@ -1,9 +1,8 @@
 #include "../h/timer.h"
 
-Timer::Timer() {
+void Timer::startTimestamp() {
     start = std::chrono::steady_clock::now(); 
 }
-
 
 int Timer::getPassedTime() {
 

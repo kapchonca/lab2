@@ -11,7 +11,7 @@ protected:
 
 public:
 
-    Timer();
+    void startTimestamp();
 
     int getPassedTime();
 

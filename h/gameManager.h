@@ -42,7 +42,11 @@ public:
 
     void setGameOver();
 
+    void printGameOver();
+
     void increaseLoopCount();
+
+    void nextLoop();
 
     void stateInventory(Player* player);
 
