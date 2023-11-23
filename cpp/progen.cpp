@@ -16,7 +16,7 @@ void ProceduralGeneration::generateMap(int roomsCount) {
 
     srand(time(0));
 
-    while (m_rooms.size() < roomsCount) {
+    while (static_cast<int>(m_rooms.size()) < roomsCount) {
         
         const int w = 20 + rand() % 41;
         const int h = 10 + rand() % 16;

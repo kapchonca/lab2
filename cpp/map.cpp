@@ -41,7 +41,7 @@ void Map::fieldOfView(int y, int x) {
 
     for (int i = -1; i < 2; i++) {
 
-        if (-2 < i < 2) { 
+        if (-2 < i && i < 2) { 
 
             for (int j = -2; j < 3; j++) {
                 mvprintw(i + y, j + x, "%c", mapLayout[i + y][j + x]);
@@ -112,7 +112,7 @@ int Map::movePlayer() {
 
             }
 
-            for (int chest = 0; chest < chestCoords.size(); chest++) {
+            for (int chest = 0; chest < static_cast<int>(chestCoords.size()); chest++) {
 
                 if (x == chestCoords[chest].x && y == chestCoords[chest].y) {
 

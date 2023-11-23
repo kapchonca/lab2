@@ -22,7 +22,7 @@ void Text::setRandomLine(Monster* monster) {
 
 void Text::randomizeLine() {
 
-    for (int i = 0; i < lineToPrint.size(); i++) {
+    for (int i = 0; i < static_cast<int>(lineToPrint.size()); i++) {
 
         if (rand() % 3 == 0) {
 

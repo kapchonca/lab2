@@ -2,7 +2,7 @@
 #include "../h/gameManager.h"
 
 GameManager::GameManager() {
-    int loopCounter = 0;
+    loopCounter = 0;
 
     player = new Player();
 

@@ -120,8 +120,7 @@ bool StateBattle::readySetFight(Player* player, Monster* monster) {
             text.randomizeLine();
         }
 
-        int maxY, maxX;
-        getmaxyx(stdscr, maxY, maxX);
+        int maxX = getmaxx(stdscr);
         int centerX = maxX / 2;
 
         move(48, centerX - text.getTextLength() / 2); // передвигает курсор 

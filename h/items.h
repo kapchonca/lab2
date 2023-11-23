@@ -21,6 +21,7 @@ public:
 
     virtual void useItem(Player* player) = 0;
 
+    virtual ~Item() = default; 
 
 };
 
@@ -31,6 +32,8 @@ public:
     virtual void useItem(Player* player) = 0;
 
     virtual void displayPotionInfo() = 0;
+
+    ~Potion() override = default;
 };
 
 class Scroll: public Item {
@@ -40,6 +43,8 @@ public:
     virtual void useItem(Player* player) = 0;
 
     virtual void displayScrollInfo() = 0;
+
+    ~Scroll() override = default;
 
 };
 
@@ -51,6 +56,8 @@ public:
     void useItem(Player* player) override;
 
     void displayPotionInfo() override;
+
+    ~PotionOfHealSmall() override = default;
     
 };
 
@@ -62,6 +69,7 @@ public:
 
     void displayPotionInfo() override;
 
+    ~PotionOfHealMedium() override = default;
 };
 
 class AttackScroll: public Scroll {
@@ -72,6 +80,7 @@ public:
 
     void displayScrollInfo() override;
 
+    ~AttackScroll() override = default;
 };
 
 class HealthScroll: public Scroll {
@@ -82,6 +91,7 @@ public:
 
     void displayScrollInfo() override;
 
+    ~HealthScroll() override = default;
 };
 
 

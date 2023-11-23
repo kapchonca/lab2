@@ -11,3 +11,6 @@ file(GLOB SOURCES
 add_executable(lab2 ${SOURCES})
 
 target_link_libraries(lab2 ${CURSES_LIBRARIES} tinfo)
+
+SET(GCC_COVERAGE_COMPILE_FLAGS "-Wall -g")
+add_definitions(${GCC_COVERAGE_COMPILE_FLAGS})
