@@ -16,7 +16,8 @@ Monster::Monster(Player* player) {
     datasetOffset = 0;
 
 }
-
+/* Методы, которые не изменяют состояние объекта должны быть 
+ * константными */
 int Monster::getTime() {
     return monsterTime;
 }
@@ -48,7 +49,8 @@ std::string Monster::getName() {
 std::string Monster::getSpriteInd() {
     return spriteInd;
 }
-
+/* Тут тоже возникает сложная дилемма. Теперь героя можно убить за пределами
+ * боя, что не очень хорошо. Ну а как иначе тогда? Опять friend какой-нибудь*/
 void Monster::decreaseHealth(int attack) {
     healthPoints-=attack;
 }

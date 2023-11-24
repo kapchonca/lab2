@@ -2,7 +2,7 @@
 
 void Text::setRandomLine(Monster* monster) {
 
-    std::ifstream dataset("../dataset");
+    std::ifstream dataset("/home/sched/programs/students/AlexanderPoptsov/dataset");
 
     if (!dataset.is_open()) {
         throw std::invalid_argument( "Couldn't open the file" );

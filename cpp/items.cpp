@@ -1,6 +1,6 @@
 #include "../h/items.h"
 
-
+/* Good, Factory method! */
 Item* Item::createItem(int itemType) {
 
     switch (itemType) {
@@ -40,7 +40,13 @@ void PotionOfHealMedium::displayPotionInfo() {
 }
 
 void AttackScroll::useItem(Player* player) {
-
+    /* Тут возникает довольно сложная дискусcионная тема насчет того,
+     * должны ли быть все поля класса с публичными сеттерами (что 
+     * вообще-то все равно что оставить поля публичными и соответственно
+     * нарушить инкапсуляцию), или это функции, которым требуется знать
+     * о состоянии класса, должны определяться как friend. Лично я считаю,
+     * что friend лучше, так как он только расширяет границу инкапсуляции,
+     * а не полностью ее убирает */
     player->setAttackPoints(player->getAttackPoints() + 1);
         
 }

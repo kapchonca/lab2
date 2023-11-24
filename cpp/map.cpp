@@ -40,7 +40,7 @@ void Map::removeChest(int chestInd) {
 void Map::fieldOfView(int y, int x) {
 
     for (int i = -1; i < 2; i++) {
-
+        /* Про это уже в варнингах написали */
         if (-2 < i < 2) { 
 
             for (int j = -2; j < 3; j++) {
@@ -49,7 +49,8 @@ void Map::fieldOfView(int y, int x) {
         }
     }
 }
-
+/* Тут опять дилемма, должен двигаться игрок или его должна двигать карта?
+ * https://stackoverflow.com/questions/26717919/correct-way-in-oop-game-example-playerwalk-or-mapplayerwalk */
 int Map::movePlayer() {
 
     int x = 1;
